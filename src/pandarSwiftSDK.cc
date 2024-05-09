@@ -498,6 +498,11 @@ void PandarSwiftSDK::stop() {
 	return;
 }
 
+void PandarSwiftSDK::standBy(bool standBy)
+{
+	auto err = (standBy == true) ? TcpCommandSetLidarStandbyMode(m_pTcpCommandClient) : TcpCommandSetLidarNormalMode(m_pTcpCommandClient);
+}
+
 int PandarSwiftSDK::parseData(Pandar128PacketVersion13 &packet, const uint8_t *recvbuf, const int len) {
 	int index = 0;
 	if(recvbuf[0] != 0xEE && recvbuf[1] != 0xFF && recvbuf[2] != 1 ) {    
